@@ -32,7 +32,7 @@ CAUSE_SETS = {         # which groups are a correct explanation for each anomaly
 
 def make_panel(seed, N=500, K=15, prev=0.15, sigma_m=0.10, sigma_e=0.12, rho=0.8,
                text_noise=0.30, miss_base=0.08, mix=(0.5, 0.2, 0.2, 0.1),
-               label_mode='clean', label_noise=0.0, wrong_edge=0.0, delta_scale=1.0, tail_nu=None):
+               label_mode='clean', label_noise=0.0, wrong_edge=0.0, delta_scale=1.0, tail_nu=None, wm_seed=None):
     rng = np.random.default_rng(seed)
     # sector sizes: uneven, at least 3 members
     w = rng.dirichlet(np.ones(K) * 1.5)
@@ -86,7 +86,7 @@ def make_panel(seed, N=500, K=15, prev=0.15, sigma_m=0.10, sigma_e=0.12, rho=0.8
     g_cur = np.clip(g_cur, -0.95, 3.0)
 
     # text embedding of the claim
-    Wm = rng.normal(0, 1, (4, 8))
+    Wm = rng.normal(0, 1, (4, 8)) if wm_seed is None else np.random.default_rng(wm_seed).normal(0, 1, (4, 8))
     Wm, _ = np.linalg.qr(Wm.T)           # 8x4 orthonormal columns
     sig = np.stack([claim / 0.1, ctype == 0, ctype == 1, ctype == 2], 1).astype(float)
     E = sig @ Wm.T + rng.normal(0, text_noise, (N, 8))

@@ -13,6 +13,7 @@ for _,r in e.iterrows():
         x=g[g.company==r.company].iloc[0]; pg=x.pg if isinstance(x.pg,str) else (x.pr if isinstance(x.pr,str) else '')
         o='pilot (38)'; note=''
         if r.company=='L&T Ltd.': note='FY2023-24 values taken from the filing file labelled PAM_ (p.36): Scope 1 635,646 / 693,115; Scope 2 349,682 / 273,719'; pg='p.36'
+        if r.company=='Indian Oil Corporation Ltd.': note='FY2023-24 total = all-gas Scope 1 (22.00 Mt) + Scope 2 (0.76 Mt), IOCLBRSR2324.pdf p.31; corrected from an earlier version of this panel that mixed CO2-only and all-gas bases'
         rows.append([r.company,r.macro,None,None,None,None,r.tot_cur,r.tot_prev,o,x.src,pg,note])
 cols=['Company','Macro-sector','Scope 1 current (tCO2e)','Scope 1 previous','Scope 2 current','Scope 2 previous','Scope 1+2 current (tCO2e)','Scope 1+2 previous','Panel','Source file / URL','Location in filing (as recorded)','Note']
 wb=Workbook(); ws=wb.active; ws.title='S1 panel'
