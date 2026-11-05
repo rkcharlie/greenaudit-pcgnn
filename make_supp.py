@@ -34,7 +34,7 @@ for row in ws.iter_rows(min_row=2):
 for i,w in enumerate([34,24,14,14,14,14,16,16,14,48,44,56,11,11],1): ws.column_dimensions[get_column_letter(i)].width=w
 ws.freeze_panes='B2'
 n2=wb.create_sheet('Notes')
-for t in ['Supplementary Table S1 for: Peer-Conditioned Cross-Modal Consistency Scoring for ESG Disclosure Verification (Krishna and Ahamad).',
+for t in ['Supplementary Table S1 for: GreenAudit-GNN: Peer-Conditioned Cross-Modal Consistency Scoring for Explainable ESG Disclosure Anomaly Detection.',
  'Scope 1+2 totals are as printed in the BRSR Principle 6 emissions table of each filing. Blank cells mean the filing gave no value; nothing was estimated.',
  'Pilot (38) rows hold totals only (from the audited claim-level dataset); the location column is copied from that dataset and is a page number for some companies and a section name for others.',
  'Extended (17) rows give the source PDF name and printed page index from text extraction (pdftotext page order, which may differ from the printed page number).',
